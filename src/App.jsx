@@ -27,6 +27,7 @@ class App extends React.Component {
     this.hideSideBar = this.hideSideBar.bind(this);
   }
   hideSideBar() {
+    console.log("hide side bar");
     this.setState({ showSidebar: !this.state.showSidebar });
   }
   render() {
@@ -49,10 +50,14 @@ class App extends React.Component {
                 />
               </AppBar>
               <Box direction="row" flex overflow={{ horizontal: "hidden" }}>
-                <SideBar showSidebar={this.state.showSidebar} size={size} />
                 <Box flex align="center" justify="center">
                   app body
                 </Box>
+                <SideBar
+                  showSidebar={this.state.showSidebar}
+                  size={size}
+                  onClick={() => this.hideSideBar()}
+                />
               </Box>
             </Box>
           )}

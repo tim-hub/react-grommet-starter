@@ -1,6 +1,6 @@
 import React from "react";
-import { configure, shallow } from "enzyme";
-import { ResponsiveContext } from "grommet";
+import { configure, shallow, mount } from "enzyme";
+import { ResponsiveContext, Box } from "grommet";
 import { expect } from "chai";
 import App from "../App";
 
@@ -9,10 +9,11 @@ configure({ adapter: new Adapter() });
 
 describe("App component testing", function() {
   it("has an app bar", function() {
-    const wrapper = shallow(<App />);
+    const wrapper = mount(<App />);
 
     expect(
       wrapper.containsMatchingElement(ResponsiveContext.Consumer)
     ).to.equal(true);
+    expect(wrapper.containsMatchingElement(Box)).to.equal(true);
   });
 });
