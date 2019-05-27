@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button, Heading, Grommet, ResponsiveContext } from "grommet";
-import { Notification, FormClose } from "grommet-icons";
+import { Notification } from "grommet-icons";
 import "./App.css";
 import AppBar from "./components/AppBar";
 import SideBar from "./components/SideBar";
@@ -49,11 +49,7 @@ class App extends React.Component {
                 />
               </AppBar>
               <Box direction="row" flex overflow={{ horizontal: "hidden" }}>
-                <SideBar
-                  showSidebar={this.state.showSidebar}
-                  hideSideBar={this.hideSideBar}
-                  size={size}
-                />
+                <SideBar showSidebar={this.state.showSidebar} size={size} />
                 <Box flex align="center" justify="center">
                   app body
                 </Box>
