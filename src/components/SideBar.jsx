@@ -1,10 +1,7 @@
 import React from "react";
 import { Box, Collapsible, Button, Layer } from "grommet";
 import { FormClose } from "grommet-icons";
-
-const SideContent = props => (
-  <Box fill background="light-2" align="center" justify="center" {...props} />
-);
+import SideContent from "./SideContent";
 
 /**
  * A responsive sidebar.
@@ -15,34 +12,24 @@ const SideBar = props => {
     return <SideContent>Hi there a sidebar</SideContent>;
   };
 
-  return (
-    <Collapsible
-      direction="horizontal"
-      open={
-        props.showSidebar ||
-        props.size === "medium" ||
-        props.size === "large" ||
-        props.size === "xlarge"
-      }
+  const getCloseButton = clickingFun => (
+    <Box
+      background="light-2"
+      tag="header"
+      justify="end"
+      align="center"
+      direction="row"
     >
-      {props.size === "small" ||
-      (props.size === "xsmall" && props.showSidebar) ? (
+      <Button icon={<FormClose />} onClick={clickingFun} />
+    </Box>
+  );
+
+  return (
+    <Collapsible direction="horizontal" open={props.showSidebar}>
+      {props.showSidebar &&
+      (props.size === "small" || props.size === "xsmall") ? (
         <Layer>
-          <Box
-            background="light-2"
-            tag="header"
-            justify="end"
-            align="center"
-            direction="row"
-          >
-            <Button
-              icon={<FormClose />}
-              onClick={() => {
-                console.log("clicked" + props.onClick);
-                props.onClick();
-              }}
-            />
-          </Box>
+          {getCloseButton(props.onClick)}
           {renderContent()}
         </Layer>
       ) : (
